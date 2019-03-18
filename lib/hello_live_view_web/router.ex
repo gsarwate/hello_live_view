@@ -8,6 +8,7 @@ defmodule HelloLiveViewWeb.Router do
     plug Phoenix.LiveView.Flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :put_layout, {HelloLiveViewWeb.LayoutView, :app}
   end
 
   pipeline :api do
@@ -18,6 +19,8 @@ defmodule HelloLiveViewWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    live "/greet", GreetLive
   end
 
   # Other scopes may use custom stacks.
